@@ -11,20 +11,22 @@ import java.io.File;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.*;
 import static org.openqa.selenium.OutputType.*;
 
 
 public class GroupCreationTests {
 
-
-    // FirefoxDriver wd;
-    FirefoxDriver wd;
+    //FirefoxDriver wd;   // Firefox
+    ChromeDriver wd;    // Chrome
     
     @BeforeMethod
     public void setUp() throws Exception {
-        System.setProperty("webdriver.gecko.driver", "C:\\Selenium\\geckodriver.exe");
-        wd = new FirefoxDriver();
+        //System.setProperty("webdriver.gecko.driver", "C:\\Selenium\\geckodriver.exe");    // Firefox
+        System.setProperty("webdriver.chrome.driver", "C:\\Selenium\\chromedriver.exe");    // Chrome
+        //wd = new FirefoxDriver(); // Firefox
+        wd = new ChromeDriver();    // Chrome
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
     }
     
@@ -57,8 +59,9 @@ public class GroupCreationTests {
     public void tearDown() {
         wd.quit();
     }
-    
-    public static boolean isAlertPresent(FirefoxDriver wd) {
+
+    // public static boolean isAlertPresent(FirefoxDriver wd) {     // Firefox
+    public static boolean isAlertPresent(ChromeDriver wd) {     // Chrome
         try {
             wd.switchTo().alert();
             return true;

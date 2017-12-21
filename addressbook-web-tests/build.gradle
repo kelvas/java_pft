@@ -1,12 +1,12 @@
 apply plugin: 'java'
 // apply plugin: 'application'
-// mainClassName = 'ru.stqa.pft.sandbox.MyFirstProgram'
+// mainClassName = 'ru.stqa.pft.sandbox.MyFirstProgram' // запуск приложений
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    compile 'org.testng:testng:6.11'
-    compile 'org.seleniumhq.selenium:selenium-java:3.8.1'
+    compile 'org.testng:testng:6.11'    // Java c TestNG
+    compile 'org.seleniumhq.selenium:selenium-java:3.8.1' // Java с Selenium
 }

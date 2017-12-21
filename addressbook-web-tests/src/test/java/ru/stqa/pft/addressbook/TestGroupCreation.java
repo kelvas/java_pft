@@ -16,22 +16,19 @@ import org.openqa.selenium.*;
 import static org.openqa.selenium.OutputType.*;
 
 
-public class GroupCreationTests {
+public class TestGroupCreation {
 
     //FirefoxDriver wd;   // Firefox
     ChromeDriver wd;    // Chrome
-    
+
+    // Метод инициализации фикстуры
     @BeforeMethod
     public void setUp() throws Exception {
         //System.setProperty("webdriver.gecko.driver", "C:\\Selenium\\geckodriver.exe");    // Firefox
         System.setProperty("webdriver.chrome.driver", "C:\\Selenium\\chromedriver.exe");    // Chrome
-        //wd = new FirefoxDriver(); // Firefox
+        //FirefoxDriver wd = new FirefoxDriver(); // Firefox
         wd = new ChromeDriver();    // Chrome
-        wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-    }
-    
-    @Test
-    public void GroupCreationTests() {
+        wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         wd.get("http://localhost/addressbook/group.php");
         wd.findElement(By.name("user")).click();
         wd.findElement(By.name("user")).clear();
@@ -40,6 +37,10 @@ public class GroupCreationTests {
         wd.findElement(By.name("pass")).clear();
         wd.findElement(By.name("pass")).sendKeys("secret");
         wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
+    }
+    
+    @Test
+    public void GroupCreationTests() {
         wd.findElement(By.linkText("groups")).click();
         wd.findElement(By.name("new")).click();
         wd.findElement(By.name("group_name")).click();
@@ -54,7 +55,8 @@ public class GroupCreationTests {
         wd.findElement(By.name("submit")).click();
         wd.findElement(By.linkText("group page")).click();
     }
-    
+
+    // Метод завершения фикстуры
     @AfterMethod
     public void tearDown() {
         wd.quit();

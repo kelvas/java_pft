@@ -7,5 +7,6 @@ repositories {
 }
 
 dependencies {
-    compile 'org.testng:testng:6.11'
+    compile 'org.testng:testng:6.11'    // Java c TestNG
+    compile 'org.apache.poi:poi-ooxml-schemas:3.17' // Java с Excel
 }

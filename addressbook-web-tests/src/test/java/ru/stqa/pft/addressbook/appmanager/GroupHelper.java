@@ -48,4 +48,12 @@ public class GroupHelper {
   public void selectGroup() {
     driver.findElement(By.name("selected[]")).click();
   }
+
+  public void initGroupModification() {
+    driver.findElement(By.name("edit")).click();
+  }
+
+  public void updateGroupModification() {
+    driver.findElement(By.name("update")).click();
+  }
 }

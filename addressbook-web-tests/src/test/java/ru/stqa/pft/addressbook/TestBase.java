@@ -1,19 +1,20 @@
 package ru.stqa.pft.addressbook;
 
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
-import java.util.concurrent.TimeUnit;
-
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+
+import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.fail;
 
-public class GroupCreationTests {
+public class TestBase {
   //FirefoxDriver driver;
   ChromeDriver driver;
-
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
 
@@ -28,7 +29,7 @@ public class GroupCreationTests {
     login("admin", "secret");    // вход в систему с любым пользователем и паролем
   }
 
-  private void login(String username, String password) {
+  private void login(String username, String password) throws Exception {
     driver.findElement(By.name("user")).click();
     driver.findElement(By.name("user")).clear();
     driver.findElement(By.name("user")).sendKeys(username);
@@ -38,24 +39,15 @@ public class GroupCreationTests {
     driver.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
   }
 
-  @Test
-  public void testGroupCreation() {
-    gotoGroupPage();        // перейти на страницу списка групп
-    initGroupCreation();    // инициализировать создание новой группы
-    fillGroupForm(new GroupDate("test1", "test2", "test3")); // заполнить форму разными данными
-    submitGroupCreation();  // подтвердить создание группы
-    returnToGroupPage();    // вернуться на страницу со списком групп
-  }
-
-  private void returnToGroupPage() {
+  protected void returnToGroupPage() {
     driver.findElement(By.linkText("group page")).click();
   }
 
-  private void submitGroupCreation() {
+  protected void submitGroupCreation() {
     driver.findElement(By.name("submit")).click();
   }
 
-  private void fillGroupForm(GroupDate groupDate) {
+  protected void fillGroupForm(GroupDate groupDate) {
     driver.findElement(By.name("group_name")).click();
     driver.findElement(By.name("group_name")).clear();
     driver.findElement(By.name("group_name")).sendKeys(groupDate.getName());
@@ -67,14 +59,13 @@ public class GroupCreationTests {
     driver.findElement(By.name("group_footer")).sendKeys(groupDate.getFooter());
   }
 
-  private void initGroupCreation() {
+  protected void initGroupCreation() {
     driver.findElement(By.name("new")).click();
   }
 
-  private void gotoGroupPage() {
+  protected void gotoGroupPage() {
     driver.findElement(By.linkText("groups")).click();
   }
-
 
   @AfterMethod(alwaysRun = true)  // Метод завершения фикстуры
   public void tearDown() throws Exception {
@@ -116,5 +107,13 @@ public class GroupCreationTests {
     } finally {
       acceptNextAlert = true;
     }
+  }
+
+  protected void deleteSelectedGroups() {
+    driver.findElement(By.name("delete")).click();
+  }
+
+  protected void selectGroup() {
+    driver.findElement(By.name("selected[]")).click();
   }
 }

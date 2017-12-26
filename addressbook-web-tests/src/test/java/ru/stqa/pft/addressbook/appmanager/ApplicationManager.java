@@ -1,25 +1,22 @@
-package ru.stqa.pft.addressbook;
+package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import ru.stqa.pft.addressbook.model.GroupDate;
 
 import java.util.concurrent.TimeUnit;
-
 import static org.testng.Assert.fail;
 
-public class TestBase {
+public class ApplicationManager {
   //FirefoxDriver driver;
   ChromeDriver driver;
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
 
-  @BeforeMethod // Метод инициализации фикстуры
-  public void setUp() throws Exception {
+  public void init() throws Exception {
     //System.setProperty("webdriver.gecko.driver", "C:\\Selenium\\geckodriver.exe");
     //driver = new FirefoxDriver();
     System.setProperty("webdriver.chrome.driver", "C:\\Selenium\\chromedriver.exe");
@@ -29,7 +26,7 @@ public class TestBase {
     login("admin", "secret");    // вход в систему с любым пользователем и паролем
   }
 
-  private void login(String username, String password) throws Exception {
+  public void login(String username, String password) throws Exception {
     driver.findElement(By.name("user")).click();
     driver.findElement(By.name("user")).clear();
     driver.findElement(By.name("user")).sendKeys(username);
@@ -39,15 +36,15 @@ public class TestBase {
     driver.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
   }
 
-  protected void returnToGroupPage() {
+  public void returnToGroupPage() {
     driver.findElement(By.linkText("group page")).click();
   }
 
-  protected void submitGroupCreation() {
+  public void submitGroupCreation() {
     driver.findElement(By.name("submit")).click();
   }
 
-  protected void fillGroupForm(GroupDate groupDate) {
+  public void fillGroupForm(GroupDate groupDate) {
     driver.findElement(By.name("group_name")).click();
     driver.findElement(By.name("group_name")).clear();
     driver.findElement(By.name("group_name")).sendKeys(groupDate.getName());
@@ -59,16 +56,15 @@ public class TestBase {
     driver.findElement(By.name("group_footer")).sendKeys(groupDate.getFooter());
   }
 
-  protected void initGroupCreation() {
+  public void initGroupCreation() {
     driver.findElement(By.name("new")).click();
   }
 
-  protected void gotoGroupPage() {
+  public void gotoGroupPage() {
     driver.findElement(By.linkText("groups")).click();
   }
 
-  @AfterMethod(alwaysRun = true)  // Метод завершения фикстуры
-  public void tearDown() throws Exception {
+  public void stop() {
     driver.quit();
     String verificationErrorString = verificationErrors.toString();
     if (!"".equals(verificationErrorString)) {
@@ -109,11 +105,11 @@ public class TestBase {
     }
   }
 
-  protected void deleteSelectedGroups() {
+  public void deleteSelectedGroups() {
     driver.findElement(By.name("delete")).click();
   }
 
-  protected void selectGroup() {
+  public void selectGroup() {
     driver.findElement(By.name("selected[]")).click();
   }
 }

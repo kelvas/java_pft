@@ -18,42 +18,46 @@ public class GroupHelper {
   }
 
   public void returnToGroupPage() {
-    driver.findElement(By.linkText("group page")).click();
+    click(By.linkText("group page"));
   }
 
   public void submitGroupCreation() {
-    driver.findElement(By.name("submit")).click();
+    click(By.name("submit"));
+  }
+
+  private void click(By locator) {
+    driver.findElement(locator).click();
   }
 
   public void fillGroupForm(GroupDate groupDate) {
-    driver.findElement(By.name("group_name")).click();
-    driver.findElement(By.name("group_name")).clear();
-    driver.findElement(By.name("group_name")).sendKeys(groupDate.getName());
-    driver.findElement(By.name("group_header")).click();
-    driver.findElement(By.name("group_header")).clear();
-    driver.findElement(By.name("group_header")).sendKeys(groupDate.getHeader());
-    driver.findElement(By.name("group_footer")).click();
-    driver.findElement(By.name("group_footer")).clear();
-    driver.findElement(By.name("group_footer")).sendKeys(groupDate.getFooter());
+    type(By.name("group_name"), groupDate.getName());
+    type(By.name("group_header"), groupDate.getHeader());
+    type(By.name("group_footer"), groupDate.getFooter());
+  }
+
+  private void type(By locator, String text) {
+    click(locator);
+    driver.findElement(locator).clear();
+    driver.findElement(locator).sendKeys(text);
   }
 
   public void initGroupCreation() {
-    driver.findElement(By.name("new")).click();
+    click(By.name("new"));
   }
 
   public void deleteSelectedGroups() {
-    driver.findElement(By.name("delete")).click();
+    click(By.name("delete"));
   }
 
   public void selectGroup() {
-    driver.findElement(By.name("selected[]")).click();
+    click(By.name("selected[]"));
   }
 
   public void initGroupModification() {
-    driver.findElement(By.name("edit")).click();
+    click(By.name("edit"));
   }
 
   public void updateGroupModification() {
-    driver.findElement(By.name("update")).click();
+    click(By.name("update"));
   }
 }

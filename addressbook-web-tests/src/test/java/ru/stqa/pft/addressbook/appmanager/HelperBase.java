@@ -18,8 +18,15 @@ public class HelperBase {
 
   protected void type(By locator, String text) {
     click(locator);
-    driver.findElement(locator).clear();
-    driver.findElement(locator).sendKeys(text);
+    if (text != null) {
+      // получаем значение поля ввода
+      String existingText = driver.findElement(locator).getAttribute("value");
+      // если не верно что текст совпадает с существующим текстом
+      if (! text.equals(existingText)) {
+        driver.findElement(locator).clear();
+        driver.findElement(locator).sendKeys(text);
+      }
+    }
   }
 
   public boolean isElementPresent(By by) {

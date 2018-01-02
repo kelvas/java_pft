@@ -16,10 +16,14 @@ public class ContactHelper extends HelperBase {
   }
 
   // верхний клик в контактах на редактирование контакта
-  public void updateContactModification() { click(By.name("update")); }
+  public void updateContactModification() {
+    click(By.name("update"));
+  }
 
   // клик на карандаш для редактирования
-  public void selectContactEdit() { click(By.xpath("//img[@alt='Edit']")); }
+  public void selectContactEdit() {
+    click(By.xpath("//img[@alt='Edit']"));
+  }
 
 
   // подтверждение изменений из создания контакта
@@ -36,4 +40,10 @@ public class ContactHelper extends HelperBase {
   public void modifyContact() {
     click(By.name("modifiy"));
   }
+
+  // возврат на домашнюю страницу
+  public void returnToHomePage() {
+    click(By.linkText("home page"));
+  }
+
 }

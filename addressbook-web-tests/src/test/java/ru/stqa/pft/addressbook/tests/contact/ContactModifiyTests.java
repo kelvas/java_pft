@@ -19,7 +19,7 @@ public class ContactModifiyTests extends TestBase {
     // подтвердили изменения
     app.getContactHelper().updateContactModification();
     // вернулись на дом стр
-    app.getNavigationHelper().returnToHomePage();
+    app.getContactHelper().returnToHomePage();
   }
 
 }

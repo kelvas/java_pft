@@ -11,19 +11,17 @@ public class NavigationHelper extends HelperBase {
   }
 
   // идти на домашнюю стануцк
-  public void gotoHomePage() { click(By.linkText("home")); }
-
-  // идти на страницу групп
-  public void gotoGroupPage() { click(By.linkText("groups")); }
-
-  // идти на страницу создания контакта
-  public void gotoAddNewPage() { click(By.linkText("add new")); }
-
-  // возврат на страницу групп
-  public void returnToGroupPage() {
-    click(By.linkText("group page"));
+  public void gotoHomePage() {
+    click(By.linkText("home"));
   }
 
-  // возврат на домашнюю страницу
-  public void returnToHomePage() { click(By.linkText("home page")); }
+  // идти на страницу групп
+  public void gotoGroupPage() {
+    click(By.linkText("groups"));
+  }
+
+  // идти на страницу создания контакта
+  public void gotoAddNewPage() {
+    click(By.linkText("add new"));
+  }
 }

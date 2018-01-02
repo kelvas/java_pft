@@ -2,7 +2,6 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import ru.stqa.pft.addressbook.model.GroupDate;
 
 public class GroupHelper extends HelperBase {
@@ -12,13 +11,6 @@ public class GroupHelper extends HelperBase {
     super(driver);
   }
 
-  public void returnToGroupPage() {
-    click(By.linkText("group page"));
-  }
-
-  public void submitGroupCreation() {
-    click(By.name("submit"));
-  }
 
   public void fillGroupForm(GroupDate groupDate) {
     type(By.name("group_name"), groupDate.getName());
@@ -45,4 +37,9 @@ public class GroupHelper extends HelperBase {
   public void updateGroupModification() {
     click(By.name("update"));
   }
+
+  public void submitGroupCreation() {
+    click(By.name("submit"));
+  }
+
 }

@@ -1,6 +1,7 @@
-package ru.stqa.pft.addressbook.tests;
+package ru.stqa.pft.addressbook.tests.group;
 
 import org.testng.annotations.Test;
+import ru.stqa.pft.addressbook.tests.TestBase;
 
 public class GroupDellTests extends TestBase {
 
@@ -9,6 +10,6 @@ public class GroupDellTests extends TestBase {
     app.getNavigationHelper().gotoGroupPage();
     app.getGroupHelper().selectGroup();
     app.getGroupHelper().deleteSelectedGroups();
-    app.getGroupHelper().returnToGroupPage();
+    app.getNavigationHelper().returnToGroupPage();
   }
 }

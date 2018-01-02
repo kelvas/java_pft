@@ -13,8 +13,10 @@ public class ApplicationManager {
 
   private NavigationHelper navigationHelper;
   private GroupHelper groupHelper;
+  private ContactHelper contactHelper;
   private StringBuffer verificationErrors = new StringBuffer();
   private String browser;
+
 
   // конструктор создания определенного вебдрайвера
   public ApplicationManager(String browser) {
@@ -37,6 +39,7 @@ public class ApplicationManager {
     driver.get("http://localhost/addressbook/");
     groupHelper = new GroupHelper(driver);
     navigationHelper = new NavigationHelper(driver);
+    contactHelper = new ContactHelper(driver);
     SessionHelper sessionHelper = new SessionHelper(driver);
     sessionHelper.login("admin", "secret");    // вход в систему с любым пользователем и паролем
   }
@@ -56,4 +59,6 @@ public class ApplicationManager {
   public NavigationHelper getNavigationHelper() {
     return navigationHelper;
   }
+
+  public ContactHelper getContactHelper() { return contactHelper; }
 }

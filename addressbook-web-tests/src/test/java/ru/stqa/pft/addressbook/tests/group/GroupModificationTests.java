@@ -1,7 +1,8 @@
-package ru.stqa.pft.addressbook.tests;
+package ru.stqa.pft.addressbook.tests.group;
 
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupDate;
+import ru.stqa.pft.addressbook.tests.TestBase;
 
 public class GroupModificationTests extends TestBase {
 
@@ -12,6 +13,6 @@ public class GroupModificationTests extends TestBase {
     app.getGroupHelper().initGroupModification();
     app.getGroupHelper().fillGroupForm(new GroupDate("test1", "test2", "test3")); // заполнить форму разными данными
     app.getGroupHelper().updateGroupModification();
-    app.getGroupHelper().returnToGroupPage();
+    app.getNavigationHelper().returnToGroupPage();
   }
 }

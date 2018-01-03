@@ -19,9 +19,4 @@ public class NavigationHelper extends HelperBase {
   public void gotoGroupPage() {
     click(By.linkText("groups"));
   }
-
-  // идти на страницу создания контакта
-  public void gotoAddNewPage() {
-    click(By.linkText("add new"));
-  }
 }
